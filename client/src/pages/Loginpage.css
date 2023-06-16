@@ -1,0 +1,14 @@
+.outer-body{
+    height: 100vh;
+    display: flex;
+    margin: auto;
+    border: 2px solid red;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-form{
+    border: 2px solid blue;
+    background-color: rgb(243, 239, 233);
+    padding: 30px;
+}

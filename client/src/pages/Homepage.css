@@ -1,0 +1,11 @@
+.main-body{
+
+}
+
+.navbar{
+    background-color: cyan;
+    padding: 5px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
