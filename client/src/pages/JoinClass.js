@@ -4,7 +4,7 @@ import ClassComponent from "../components/ClassComponent";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const CreateClass = (props) => {
+const JoinClass = (props) => {
   const navigate = useNavigate();
   const [show, setShow] = React.useState(false);
   const [inputs, setInputs] = React.useState({});
@@ -30,13 +30,13 @@ const CreateClass = (props) => {
   const handleSubmit = async (event) => {
     try {
         event.preventDefault();
-        const res = await axios.post('http://localhost:8080/api/v1/class/createClass', inputs, {
+        const res = await axios.post('http://localhost:8080/api/v1/class/joinClass', inputs, {
             headers:{
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
         });
         if(res.data.success){
-            alert('New Class Created');
+            alert(res.data.msg);
             setShow(!show);
         }
         else{
@@ -50,24 +50,15 @@ const CreateClass = (props) => {
   return (
     <>
       <div className="mainclass-body">
-        <div>Created Classes</div>
+        <div>Joined Classes</div>
         {show ? (
           <>
             <form onSubmit={handleSubmit}>
               <label>
-                Enter The ClassName:
+                Enter The ClassID:
                 <input
-                  name="className"
-                  value={inputs.className || ""}
-                  onChange={handleChange}
-                />
-              </label>
-              <br/>
-              <label>
-                Enter The setion:
-                <input
-                  name="section"
-                  value={inputs.section || ""}
+                  name="classId"
+                  value={inputs.classId || ""}
                   onChange={handleChange}
                 />
               </label>
@@ -77,7 +68,7 @@ const CreateClass = (props) => {
             <button onClick={handleClick}> Go Back </button>
           </>
         ) : (
-          <button onClick={handleClick}> Create Class</button>
+          <button onClick={handleClick}> Join Class</button>
         )}
         {props.curClasses &&
           props.curClasses.map((ele) => (
@@ -92,4 +83,4 @@ const CreateClass = (props) => {
   );
 };
 
-export default CreateClass;
+export default JoinClass;

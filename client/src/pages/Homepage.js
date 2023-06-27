@@ -3,10 +3,12 @@ import axios from "axios";
 import {useNavigate} from 'react-router-dom';
 import "./Homepage.css";
 import CreateClass from "./CreateClass";
+import JoinClass from "./JoinClass";
 
 const HomePage = () => {
     const [user, setUser] = React.useState({});
     const navigate = useNavigate();
+    const [counter, setCounter] = React.useState(1);
 
     const getUser = async() => {
         try {
@@ -45,7 +47,9 @@ const HomePage = () => {
         navigate("/login");
     };
 
-    // console.log(user)
+    const handleClick = () => {
+        setCounter(1 - counter);
+    }
 
     return (
         <div className="main-body">
@@ -54,7 +58,12 @@ const HomePage = () => {
                 <button onClick={logout}> Logout </button>
             </header>
             <p> This is HomePage </p>
-            <CreateClass curClass = {user.createdClasses} />
+            <button onClick={handleClick}> Change Class Type </button>
+            {counter === 1 ? 
+                <CreateClass curClasses = {user.createdClasses} />
+                :
+                <JoinClass curClasses = {user.joinedClasses} />
+            }
         </div>
     )
 }

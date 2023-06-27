@@ -8,15 +8,15 @@ const classSchema = new mongoose.Schema({
     section : {
         type : String
     },
-    subject : {
-        type : String
-    },
     createdBy : {
         type : String,
         required : [true, 'Created by whom is required']
     },
     joinedBy : {
         type: [String]
+    },
+    messages : {
+        type : [String]
     }
 });
 

@@ -1,5 +1,5 @@
 import express from "express";
-import { createClassController, joinClassController } from "../controllers/classCtrl.js";
+import { classDetailsController, createClassController, joinClassController, deleteClassController } from "../controllers/classCtrl.js";
 import authMiddleware from "../middleware/authMiddleware.js";
 import addIDFromEmailMiddleware from "../middleware/addIDFromEmailMiddleware.js";
 
@@ -11,5 +11,7 @@ classRouter.get('/', (req, res) => {
 
 classRouter.post('/createClass', authMiddleware, createClassController);
 classRouter.post('/joinClass', authMiddleware, joinClassController);
+classRouter.post('/getClassDetails', authMiddleware, classDetailsController);
+classRouter.post('/deleteClass', authMiddleware, deleteClassController);
 
 export default classRouter;
